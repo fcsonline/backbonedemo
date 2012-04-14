@@ -1,0 +1,119 @@
+!!! 5
+//if lt IE 7
+  <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+//if IE 7
+  <html class="no-js lt-ie9 lt-ie8" lang="en">
+//if IE 8
+  <html class="no-js lt-ie9" lang="en">
+//[if gt IE 8]><!
+html(class='no-js', lang='en')
+  //<![endif]
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+    title fcsonline Backbone Demo
+
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width')
+
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css', media='screen,projection')
+    link(rel='stylesheet', href='/stylesheets/main.css', media='screen,projection')
+    link(rel='stylesheet', href='/stylesheets/bootstrap-responsive.css', media='screen,projection')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/modernizr-2.5.3.min.js')
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .container-fluid
+          a.btn.btn-navbar(data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='/management/') fcsonline Backbone Demo
+          .nav-collapse
+            ul.nav
+              li.active
+                a(href='#') Inicio
+              li
+                a(href='#about') Ayuda
+              li
+                a(href='#about') Acerca
+              li
+                a(href='#contact') Contacto
+            p.navbar-text.pull-right
+              a(href='#') Desconectar
+            p.navbar-text.pull-right(style='margin-right: 25px;')
+              | Logged in as
+              a(href='#') Ferran Basora
+    #main-container.container-fluid
+      .row-fluid
+        .span2
+          .well.sidebar-nav
+            ul.nav.nav-list
+              li.nav-header Entities
+              li
+                a(href='#/campaign')
+                  | Campaigns
+                  span.credits-count(style='font-size: 0.8em; background-color: #fff; color: #ccc; border-radius: 6px; padding: 0px 10px; float: right; text-shadow: 1px 1px 1px #eee; box-shadow: 0px 0px 2px #ccc;') 5
+              li
+                a(href='#/report')
+                  | Reports
+                  span.credits-count(style='font-size: 0.8em; background-color: #fff; color: #ccc; border-radius: 6px; padding: 0px 10px; float: right; text-shadow: 1px 1px 1px #eee; box-shadow: 0px 0px 2px #ccc;') 15
+        #subsection-content.span10
+          h1
+            | Welcome to the fcsonline Backbone demostration
+          p
+            | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam dapibus posuere sapien, pretium vulputate turpis porta quis. Donec iaculis feugiat leo eleifend venenatis. Cras a velit nulla, sit amet commodo nibh. Praesent aliquam risus sit amet ante sagittis id ornare ligula sagittis. Sed nec nisi mi. Curabitur pretium mi non dui tincidunt viverra. Duis vestibulum libero et neque viverra laoreet. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam vel lorem eget eros porta condimentum. Cras ligula orci, ullamcorper a pharetra at, malesuada eu ipsum. Nam ornare risus id nulla interdum tristique blandit urna sagittis. Donec eu ligula nunc. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum hendrerit metus.
+          p
+            | Phasellus posuere tempor elit a aliquet. Sed a lorem massa. Nullam vel quam gravida velit malesuada sollicitudin. Nunc a magna fringilla lacus mollis ornare. In hac habitasse platea dictumst. Cras sapien purus, tempus sit amet consequat mattis, consectetur eu neque. Nullam lacinia orci at libero egestas pharetra. Aliquam urna urna, pulvinar blandit pharetra sit amet, ultrices a lacus. Aliquam posuere dapibus dui quis tempus. Suspendisse eu magna id dui adipiscing porttitor eget non justo. Sed blandit ipsum vitae purus bibendum vel hendrerit magna mattis.
+          p
+            | Praesent sit amet luctus ante. Pellentesque malesuada massa ut risus molestie pellentesque. Integer imperdiet mollis nibh, id malesuada enim lobortis eu. Sed tellus elit, scelerisque non porttitor vitae, commodo id nisi. Donec eleifend, ipsum quis aliquam mattis, sem nisl pulvinar mauris, id interdum sem neque in odio. Phasellus risus nunc, posuere sit amet elementum quis, rutrum eget tellus. Integer magna tortor, tincidunt nec consequat at, porttitor quis nulla. Aliquam quis risus vitae diam rutrum sodales eget non libero. Maecenas risus lacus, pretium at bibendum egestas, porttitor non nunc. Proin at lectus vitae lectus molestie semper at sit amet nisi.
+          blockquote
+            p Blah Blah Blah Blah
+            small GitHub Team
+      hr
+      #myModal.modal.fade(style='display: none;')
+        .modal-header
+          a.close(data-dismiss='modal') ×
+          h3 Detalle de aplicación
+        .modal-body
+          p
+            | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          p.pagination-centered
+            img(style='height: 200px;', src='http://img.blumex.net/wp-content/uploads/2009/02/elpaisiphone.jpg')
+        .modal-footer
+          a.btn(href='#') Cerrar
+      footer
+        p fcsonline Backbone Demo
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js')
+    script
+      window.jQuery || document.write('<script src="/javascripts/jquery-1.7.1.min.js"><\\/script>')
+
+    // TODO: Compress these javascripts to one file & minify it
+    script(type='text/javascript', src='/javascripts/underscore-min.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/backbone-min.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/handlebars.js')
+    script(type='text/javascript', src='/javascripts/json2.js')
+
+    // TODO: Compress these javascripts to one file & minify it
+    script(type='text/javascript', src='/javascripts/demo.utils.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/demo.campaign.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/demo.report.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/demo.js', charset='utf-8')
+
+    // TODO: Compress these javascripts to one file & minify it
+    script(type='text/javascript', src='/javascripts/bootstrap-transition.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-alert.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-modal.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-dropdown.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-scrollspy.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-tab.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-tooltip.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-popover.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-button.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-collapse.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-carousel.js', charset='utf-8')
+    script(type='text/javascript', src='/javascripts/bootstrap-typeahead.js', charset='utf-8')
+
+    script(type='text/javascript', src='http://maps.google.com/maps/api/js?sensor=false')
