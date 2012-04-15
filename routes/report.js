@@ -5,6 +5,14 @@
 
 module.exports = function(app){
 
+    app.get('/templates/report-list', function(req, res){
+      res.render('sections/report-list', { title: 'Report' });
+    });
+
+    app.get('/templates/report-detail', function(req, res){
+      res.render('sections/report-detail', { title: 'Report' });
+    });
+
     app.get('/report', function(req, res){
 
       var reports = [];

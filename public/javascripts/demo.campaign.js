@@ -11,7 +11,7 @@ $(document).ready(function() {
         defaults : function() {
             return {
                 name : 'Default campaign name',
-                descripion : 'Description Campaign'
+                description : 'Description Campaign'
             };
         }
 
@@ -24,25 +24,41 @@ $(document).ready(function() {
     });
 
     // Views defenitions
-    CampaignsView = Backbone.View.extend({
+    CampaignsSectionView = Backbone.View.extend({
 
         events : {
-        // "click .edit" : "edit",
-        // "click .delete" : "clear",
+         // "click .edit" : "edit"
+         // "click .delete" : "clear"
         },
 
         initialize : function(options) {
             this.template = _.template(tpl.get('campaign-list'));
 
             this.el = options.el;
-            // this.model.bind('change', this.render, this);
-            // this.model.bind('destroy', this.remove, this);
+
+            this.collection.bind('change', this.render, this);
+            this.collection.bind('destroy', this.remove, this);
         },
 
         render : function() {
-            $(this.el).html(this.template({})); // this.model.toJSON()));
-            // this.setText();
-            return this;
+          // Prerender the section to load sub-templates
+          $(this.el).html(this.template({}));
+
+          // Load sub-template & render list
+          var source = $("#campaign-list-item-template").html();
+          var template_list_item = Handlebars.compile(source);
+          var tbody = this.$("#campaign-list");
+          tbody.empty();
+
+          // Append the rendered items
+          this.collection.each(function(campaign){
+              var cv = new CampaignListItemView({
+                model : campaign
+              });
+              tbody.append(cv.render().el);
+          });
+
+          return this;
         },
 
         close : function() {
@@ -55,6 +71,31 @@ $(document).ready(function() {
         remove : function() {
             $(this.el).remove();
         }
+    });
+
+    CampaignListItemView = Backbone.View.extend({
+      tagName : 'tr',
+      events : {
+       "click .edit" : "editItem",
+       "click .delete" : "deleteItem"
+      },
+
+      initialize : function() {
+        this.template = Handlebars.compile($("#campaign-list-item-template").html());
+      },
+
+      render : function() {
+        $(this.el).html(this.template(this.model.toJSON()));
+        return this;
+      },
+
+      editItem : function() {
+        alert('edit!');
+      },
+
+      deleteItem : function() {
+        alert('delete!');
+      }
     });
 
     CampaignView = Backbone.View.extend({
@@ -89,11 +130,5 @@ $(document).ready(function() {
             $(this.el).remove();
         }
     });
-
-    // Collections instances
-    Campaigns = new CampaignList();
-
-    // Initial fetch
-    Campaigns.fetch();
 
 });

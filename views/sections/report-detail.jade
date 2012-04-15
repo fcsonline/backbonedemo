@@ -1,0 +1,69 @@
+html
+  body
+    h1
+      | Perfil
+      span(style='color: rgba(0,0,0,0.2);') ·
+      span(style='color: #555;') Datos básicos
+    .alert.alert-info
+      | Phasellus posuere tempor elit a aliquet. Sed a lorem massa. Nullam vel quam gravida velit malesuada sollicitudin. Nunc a magna fringilla lacus mollis ornare. In hac habitasse platea dictumst
+    form.form-horizontal
+      fieldset
+        legend Información básica de la empresa
+        .control-group
+          label.control-label Nombre
+          .controls.docs-input-sizes
+            input.input-medium(type='text', placeholder='Ejemplo Corp.')
+            p.help-block Éste será el nombre de principal de tu empresa.
+        .control-group
+          label.control-label Descripción
+          .controls.docs-input-sizes
+            input.input-medium(type='text', placeholder='El principal objectivo de Ejemplo Corp. es ...')
+            p.help-block Introduce aquí una descripción breve de tu empresa.
+        .control-group
+          label.control-label(for='prependedInput') Correo de contacto
+          .controls
+            .input-prepend
+              span.add-on @
+              input#prependedInput.span2(size='16', type='text')
+            p.help-block Introduce la dirección de correo con la que desea que contactemos
+        .control-group
+          label.control-label Teléfono de contacto
+          .controls.docs-input-sizes
+            input.input-medium(type='text', placeholder='+34 00 000 0000')
+            p.help-block Introduce aquí un teléfono de contacto de tu empresa.
+        .control-group
+          label.control-label Opciones de contacto
+          .controls
+            label.radio
+              input#optionsRadios1(type='radio', name='optionsRadios', value='option1', checked='')
+              | Deseamos que siempre se nos contacte por correo electrónico
+            label.radio
+              input#optionsRadios2(type='radio', name='optionsRadios', value='option2')
+              | Deseamos que siempre se nos contacte por teléfono
+      fieldset
+        legend Información comercial de la empresa
+        .control-group
+          label.control-label Dirección
+          .controls.docs-input-sizes
+            input.input-medium(type='text', placeholder='Calle Castillejos 34, Barcelona')
+            p.help-block Ésta será la dirección principal de tu empresa.
+        .control-group
+          label.control-label Código postal
+          .controls.docs-input-sizes
+            input.input-medium(type='text', placeholder='08032')
+            p.help-block Ésta será el código postal principal de tu empresa.
+      fieldset
+        legend Información de cuenta
+        .control-group
+          label.control-label Nomrbe de usuario
+          .controls.docs-input-sizes
+            input.input-medium(type='text', placeholder='username')
+            p.help-block Nombre de usuario de acceso a iDiscount.
+        .control-group
+          label.control-label Password
+          .controls.docs-input-sizes
+            input.input-medium(type='password', placeholder='Clave de acceso')
+            p.help-block Ésta será tu clave de acceso a tu cuenta iDiscount
+      .form-actions
+        button.btn.btn-primary(type='submit') Save changes
+        button.btn Cancel

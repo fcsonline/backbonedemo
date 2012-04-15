@@ -11,7 +11,7 @@ $(document).ready(function() {
         defaults : function() {
             return {
                 name : 'Default report name',
-                descripion : 'Description Report'
+                description : 'Description Report'
             };
         }
 
@@ -24,7 +24,7 @@ $(document).ready(function() {
     });
 
     // Views defenitions
-    ReportsView = Backbone.View.extend({
+    ReportsSectionView = Backbone.View.extend({
 
         events : {
         // "click .edit" : "edit",
@@ -35,26 +35,66 @@ $(document).ready(function() {
             this.template = _.template(tpl.get('report-list'));
 
             this.el = options.el;
-            // this.model.bind('change', this.render, this);
-            // this.model.bind('destroy', this.remove, this);
+
+            this.collection.bind('change', this.render, this);
+            this.collection.bind('destroy', this.remove, this);
         },
 
         render : function() {
-            $(this.el).html(this.template({})); // this.model.toJSON()));
-            // this.setText();
-            return this;
+          // Prerender the section to load sub-templates
+          $(this.el).html(this.template({}));
+
+          // Load sub-template & render list
+          var source = $("#report-list-item-template").html();
+          var template_list_item = Handlebars.compile(source);
+          var tbody = this.$("#report-list");
+          tbody.empty();
+
+          // Append the rendered items
+          this.collection.each(function(report){
+              var cv = new ReportListItemView({
+                model : report
+              });
+              tbody.append(cv.render().el);
+          });
+
+          return this;
         },
 
         close : function() {
             this.model.save({
                 text : this.input.val()
             });
-            $(this.el).removeClass("editing");
         },
 
         remove : function() {
             $(this.el).remove();
         }
+    });
+
+    ReportListItemView = Backbone.View.extend({
+      tagName : 'tr',
+      events : {
+       "click .edit" : "editItem",
+       "click .delete" : "deleteItem"
+      },
+
+      initialize : function() {
+        this.template = Handlebars.compile($("#report-list-item-template").html());
+      },
+
+      render : function() {
+        $(this.el).html(this.template(this.model.toJSON()));
+        return this;
+      },
+
+      editItem : function() {
+        alert('edit!');
+      },
+
+      deleteItem : function() {
+        alert('delete!');
+      }
     });
 
     ReportView = Backbone.View.extend({
@@ -90,9 +130,4 @@ $(document).ready(function() {
         }
     });
 
-    // Collections instances
-    Reports = new ReportList();
-
-    // Initial fetch
-    Reports.fetch();
 });

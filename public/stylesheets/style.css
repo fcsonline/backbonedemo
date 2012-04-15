@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.total-count {
+  font-size: 0.8em;
+  background-color: #f88;
+  color: #fff;
+  border-radius: 6px;
+  padding: 0px 10px;
+  float: right;
+  text-shadow: 1px 1px 1px #333;
+  border: 1px solid #888;
+  box-shadow: 0px 0px 2px #ccc;'
+}
+

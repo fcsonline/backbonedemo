@@ -1,0 +1,28 @@
+h1
+  | Campaigns
+  span(style='color: rgba(0,0,0,0.2);') ·
+  span(style='color: #555;') List
+p
+  | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+.row-fluid
+  .span12
+    h2 Detailed list
+    table.table.table-bordered.table-striped
+      thead
+        tr
+          th Title
+          th Description
+          th Type
+          th Acctions
+      tbody#campaign-list
+    script#campaign-list-item-template(type='text/x-handlebars-template')
+      <td>{{name}}</td>
+      <td>{{description}}</td>
+      <td>type</td>
+      <td>
+      <a href="#/campaign/{{id}}">View details</a>
+      <a class="edit" href="#/campaign/{{id}}/edit">Edit</a>
+      <a class="delete" href="#/campaign/{{id}}/delete">Delete</a>
+      </td>
+#launch-detail.hero-unit
+  p.pagination-centered Choose a campaign

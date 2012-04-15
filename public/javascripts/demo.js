@@ -11,18 +11,23 @@ $(document).ready(function() {
         routes : {
 
             // Campaign routes
-            "/campaign"       : "getCampaigns",
-            "/campaign/:id"   : "getCampaign",
+            "/campaign"           : "getCampaigns",
+            "/campaign/:id"       : "getCampaign",
+            "/campaign/:id/edit"  : "editCampaign",
+            "/campaign/:id/delete": "deleteCampaign",
 
             // Reports routes
-            "/report"         : "getReports",
-            "/report/:id"     : "getReport"
+            "/report"           : "getReports",
+            "/report/:id"       : "getReport",
+            "/report/:id/edit"  : "editReport",
+            "/report/:id/delete": "deleteReport"
         },
 
         // Campaign route bindings
         getCampaigns : function() {
-            App.subsectionview = new CampaignsView( {
-              el : App.subsection
+            App.subsectionview = new CampaignsSectionView( {
+              el : App.subsection,
+              collection : Campaigns
             });
             App.render();
         },
@@ -34,10 +39,15 @@ $(document).ready(function() {
             App.render();
         },
 
+        editCampaign : function(id) {},
+
+        deleteCampaign : function(id) {},
+
         // Reports route bindings
         getReports : function() {
-            App.subsectionview = new ReportsView( {
-              el : App.subsection
+            App.subsectionview = new ReportsSectionView( {
+              el : App.subsection,
+              collection : Reports
             });
             App.render();
         },
@@ -47,7 +57,9 @@ $(document).ready(function() {
                el : App.subsection
             });
             App.render();
-        }
+        },
+
+        deleteReport : function(id) {}
 
     });
 
@@ -56,24 +68,37 @@ $(document).ready(function() {
 
         el : $("#main-container"),
 
-        // statsTemplate: _.template($('#stats-template').html()),
-
         events : {
-        // "click #new-definition": "createNewPromotion",
         },
 
         initialize : function() {
             this.subsection = $("#subsection-content");
 
+            // Collections instances
+            Reports = new ReportList();
+            Campaigns = new CampaignList();
+
+            // Total count
+            Reports.bind('reset', this.renderTotalReports);
+            Campaigns.bind('reset', this.renderTotalCampaigns);
+
+            // Initial fetch
+            Reports.fetch();
+            Campaigns.fetch();
         },
 
         render : function() {
             this.subsectionview.render();
         },
-        renderProfile : function() {
-            $(".credits-count").html(
-                    this.profile.get('credits'));
+
+        renderTotalCampaigns : function() {
+            $(".nav .campaign .total-count").html(Campaigns.length).fadeIn('slow');
         },
+
+        renderTotalReports : function() {
+            $(".nav .report .total-count").html(Reports.length).fadeIn('slow');
+        },
+
         addOne : function(modeldef) {
             var view = new PromotionView({
                 model : modeldef
@@ -89,7 +114,7 @@ $(document).ready(function() {
     });
 
     // Preload subsection defenitions & start application
-    tpl.loadTemplates('/templates/', 'jade', [
+    tpl.loadTemplates('/templates/', [
       'campaign-list', 'campaign-detail', // Campaign templates
       'report-list', 'report-detail'], // Reports templates
       function() {
