@@ -3,7 +3,7 @@
  * author: Ferran Basora
  */
 
-$(document).ready(function() {
+(function($) {
 
     // Application router defenition
     AppRouter = Backbone.Router.extend({
@@ -103,4 +103,4 @@ $(document).ready(function() {
           AppRouter = new AppRouter();
           Backbone.history.start();
       });
-});
+})(jQuery);

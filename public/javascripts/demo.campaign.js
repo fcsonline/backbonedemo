@@ -3,7 +3,7 @@
  * author: Ferran Basora
  */
 
-$(document).ready(function() {
+(function($) {
 
     // Models defenitions
     Campaign = Backbone.Model.extend({
@@ -137,4 +137,4 @@ $(document).ready(function() {
         }
     });
 
-});
+})(jQuery);
