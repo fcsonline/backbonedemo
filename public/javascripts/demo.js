@@ -57,6 +57,10 @@
 
     });
 
+    // Collections instances
+    Campaigns = new CampaignList();
+    Reports = new ReportList();
+
     // Application view defenition
     AppView = Backbone.View.extend({
 
@@ -68,17 +72,9 @@
         initialize : function() {
             this.subsection = $("#subsection-content");
 
-            // Collections instances
-            Campaigns = new CampaignList();
-            Reports = new ReportList();
-
             // Total count
             Campaigns.bind('all', this.renderTotalCampaigns);
             Reports.bind('all', this.renderTotalReports);
-
-            // Initial fetch
-            Campaigns.fetch();
-            Reports.fetch();
         },
 
         render : function() { this.subsectionview.render(); },
@@ -93,14 +89,61 @@
 
     });
 
+    // Application instances
+    App = new AppView();
+    AppRouter = new AppRouter();
+
+    // Application template cache
+    App.Templates = {
+
+        // Hash of preloaded templates for the app
+        templates : {},
+
+        // Recursively pre-load all the templates for the app.
+        // This implementation should be changed in a production environment. All
+        // the template files should be concatenated in a single file.
+        fetch : function(path, names, compile, callback) {
+
+            var that = this;
+            var count = 0;
+
+            var loadTemplate = function(index) {
+                var name = names[index];
+                console.log('Loading template: ' + name);
+                $.get(path + name, function(data) {
+                    that.templates[name] = (compile?_.template(data):data);
+                    count++;
+                    if (count == names.length) {
+                        callback();
+                    }
+                });
+            };
+
+            var i;
+            for (i = 0; i < names.length; i++) {
+                loadTemplate(i);
+            }
+
+        },
+
+        // Get template by name from hash of preloaded templates
+        get : function(name) {
+            return this.templates[name];
+        }
+
+    };
+
     // Preload subsection defenitions & start application
-    tpl.loadTemplates('/templates/', [
+    App.Templates.fetch('/templates/', [
       'campaign-list', 'campaign-list-item', 'campaign-detail', // Campaign templates
       'report-list', 'report-list-item', 'report-detail'], // Reports templates
       true, // Precompile
       function() {
-          App = new AppView();
-          AppRouter = new AppRouter();
+
+          // Initial fetch
+          Campaigns.fetch();
+          Reports.fetch();
+
           Backbone.history.start();
       });
 })(jQuery);

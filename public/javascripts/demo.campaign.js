@@ -31,7 +31,7 @@
         events : { },
 
         initialize : function(options) {
-            this.template = tpl.get('campaign-list');
+            this.template = App.Templates.get('campaign-list');
 
             this.el = options.el;
 
@@ -67,7 +67,7 @@
       },
 
       initialize : function() {
-        this.template = tpl.get('campaign-list-item');
+        this.template = App.Templates.get('campaign-list-item');
       },
 
       render : function() {
@@ -99,7 +99,7 @@
         },
 
         initialize : function(options) {
-            this.template = tpl.get('campaign-detail');
+            this.template = App.Templates.get('campaign-detail');
             this.el = options.el;
         },
 

@@ -32,7 +32,7 @@
         events : {},
 
         initialize : function(options) {
-            this.template = tpl.get('report-list');
+            this.template = App.Templates.get('report-list');
 
             this.el = options.el;
 
@@ -72,7 +72,7 @@
       },
 
       initialize : function() {
-        this.template = tpl.get('report-list-item');
+        this.template = App.Templates.get('report-list-item');
       },
 
       render : function() {
@@ -104,7 +104,7 @@
         },
 
         initialize : function(options) {
-            this.template = tpl.get('report-detail');
+            this.template = App.Templates.get('report-detail');
             this.el = options.el;
         },
 
