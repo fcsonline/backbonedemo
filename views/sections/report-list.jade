@@ -12,13 +12,13 @@ p
         tr
           th Title
           th Description
-          th Type
+          th Email
           th Acctions
       tbody#report-list
     script#report-list-item-template(type='text/x-handlebars-template')
       <td>{{name}}</td>
       <td>{{description}}</td>
-      <td>type</td>
+      <td>{{email}}</td>
       <td>
       <a class="edit" href="#/report/{{id}}/edit">Edit</a>
       <a class="delete" href="#/report/{{id}}/delete">Delete</a>

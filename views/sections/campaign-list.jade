@@ -12,13 +12,11 @@ p
         tr
           th Title
           th Description
-          th Type
           th Acctions
       tbody#campaign-list
     script#campaign-list-item-template(type='text/x-handlebars-template')
       <td>{{name}}</td>
       <td>{{description}}</td>
-      <td>type</td>
       <td>
       <a class="edit" href="#/campaign/{{id}}/edit">Edit</a>
       <a class="delete" href="#/campaign/{{id}}/delete">Delete</a>

@@ -1,3 +1,18 @@
-h1
-  Hola!
-.container jejje
+html
+  body Edit campaign
+    form.form-horizontal
+      fieldset
+        legend Basic campaign information
+        .control-group
+          label.control-label Name
+          .controls.docs-input-sizes
+            input.input-medium(name='name', type='text', placeholder='Example New campaign! Corp.')
+            p.help-block This will be your main campaign title
+        .control-group
+          label.control-label Description
+          .controls.docs-input-sizes
+            input.input-medium(name='description', type='text', placeholder='The main objective is...')
+            p.help-block Introduce here a description for your new campaign
+      .form-actions
+        button.btn.btn-primary.save(type='submit') Save changes
+        button.btn Cancel

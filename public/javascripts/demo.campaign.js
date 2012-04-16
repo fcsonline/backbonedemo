@@ -28,10 +28,7 @@ $(document).ready(function() {
     // Views defenitions
     CampaignsSectionView = Backbone.View.extend({
 
-        events : {
-         // "click .edit" : "edit"
-         // "click .delete" : "clear"
-        },
+        events : { },
 
         initialize : function(options) {
             this.template = _.template(tpl.get('campaign-list'));
@@ -99,6 +96,7 @@ $(document).ready(function() {
     CampaignView = Backbone.View.extend({
 
         events : {
+          "click .save" : "saveItem"
         },
 
         initialize : function(options) {
@@ -114,6 +112,17 @@ $(document).ready(function() {
 
         remove : function() {
             $(this.el).remove();
+        },
+
+        saveItem : function(e) {
+          e.preventDefault(); // Don't submit the form
+
+          this.model.save({
+            name        : this.$el.find("[name='name']").val(),
+            description : this.$el.find("[name='description']").val()
+          });
+
+          this.remove();
         }
     });
 

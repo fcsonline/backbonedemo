@@ -5,6 +5,9 @@
 
 module.exports = function(app){
 
+    // TODO: Transform to database entity
+    var campaigns = [];
+
     // Templates
     app.get('/templates/campaign-list', function(req, res){
       res.render('sections/campaign-list', { title: '' });
@@ -16,8 +19,6 @@ module.exports = function(app){
 
     app.get('/campaign', function(req, res){
       console.log("Listing campaigns");
-
-      var campaigns = [];
 
       // TODO: Retrieve from real database
       campaigns.push({ id : 1, name : 'Campaign 001', description : 'Fusce dapibus, tellus ac cursus commodo, tortor mauris' });
@@ -47,7 +48,7 @@ module.exports = function(app){
     });
 
     // Updating item
-    app.post('/campaign/:id', function(req, res){
+    app.put('/campaign/:id', function(req, res){
       console.log("Updating campaign " + req.params.id);
 
       // Retrieve form data
@@ -58,9 +59,9 @@ module.exports = function(app){
       // TODO: Update a real database entry
       var i;
       for(i = 0, len = campaigns.length; i < len; ++i) {
-        if(arr[i].id === id) {
-          arr[i].name = name;
-          arr[i].dscription = description;
+        if(campaigns[i].id === id) {
+          campaigns[i].name = name;
+          campaigns[i].dscription = description;
           break;
         }
       }

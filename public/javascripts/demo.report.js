@@ -13,7 +13,8 @@ $(document).ready(function() {
         defaults : function() {
             return {
                 name : 'Default report name',
-                description : 'Description Report'
+                description : 'Description Report',
+                email : 'example@example.com'
             };
         }
 
@@ -28,10 +29,7 @@ $(document).ready(function() {
     // Views defenitions
     ReportsSectionView = Backbone.View.extend({
 
-        events : {
-        // "click .edit" : "edit",
-        // "click .delete" : "clear",
-        },
+        events : {},
 
         initialize : function(options) {
             this.template = _.template(tpl.get('report-list'));
@@ -91,7 +89,12 @@ $(document).ready(function() {
       },
 
       editItem : function() {
-        alert('edit!');
+        var cv = new ReportView({
+          el: $("#report-detail"),
+          model : this.model
+        });
+
+        cv.render();
       },
 
       deleteItem : function(e) {
@@ -104,33 +107,34 @@ $(document).ready(function() {
     ReportView = Backbone.View.extend({
 
         events : {
-        // "click .edit" : "edit",
-        // "click .delete" : "clear",
+          "click .save" : "saveItem"
         },
 
         initialize : function(options) {
-            this.template = _.template(tpl.get('report-list'));
+            this.template = _.template(tpl.get('report-detail'));
 
             this.el = options.el;
-            // this.model.bind('change', this.render, this);
-            // this.model.bind('destroy', this.remove, this);
         },
 
         render : function() {
-            $(this.el).html(this.template({})); // this.model.toJSON()));
-            // this.setText();
+            $(this.el).html(this.template(this.model.toJSON()));
             return this;
-        },
-
-        close : function() {
-            this.model.save({
-                text : this.input.val()
-            });
-            $(this.el).removeClass("editing");
         },
 
         remove : function() {
             $(this.el).remove();
+        },
+
+        saveItem : function(e) {
+          e.preventDefault(); // Don't submit the form
+
+          this.model.save({
+            name        : this.$el.find("[name='name']").val(),
+            description : this.$el.find("[name='description']").val(),
+            email       : this.$el.find("[name='email']").val()
+          });
+
+          this.remove();
         }
     });
 
