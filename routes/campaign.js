@@ -13,6 +13,10 @@ module.exports = function(app){
       res.render('sections/campaign-list', { title: '' });
     });
 
+    app.get('/templates/campaign-list-item', function(req, res){
+      res.render('sections/campaign-list-item', { title: '' });
+    });
+
     app.get('/templates/campaign-detail', function(req, res){
       res.render('sections/campaign-detail', { title: '' });
     });

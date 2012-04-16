@@ -95,8 +95,8 @@ $(document).ready(function() {
 
     // Preload subsection defenitions & start application
     tpl.loadTemplates('/templates/', [
-      'campaign-list', 'campaign-detail', // Campaign templates
-      'report-list', 'report-detail'], // Reports templates
+      'campaign-list', 'campaign-list-item', 'campaign-detail', // Campaign templates
+      'report-list', 'report-list-item', 'report-detail'], // Reports templates
       true, // Precompile
       function() {
           App = new AppView();

@@ -13,6 +13,10 @@ module.exports = function(app){
       res.render('sections/report-list', { title: '' });
     });
 
+    app.get('/templates/report-list-item', function(req, res){
+      res.render('sections/report-list-item', { title: '' });
+    });
+
     app.get('/templates/report-detail', function(req, res){
       res.render('sections/report-detail', { title: '' });
     });

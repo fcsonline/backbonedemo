@@ -44,9 +44,7 @@ $(document).ready(function() {
           // Prerender the section to load sub-templates
           $(this.el).html(this.template({}));
 
-          // Load sub-template & render list
-          var source = $("#report-list-item-template").html();
-          var template_list_item = Handlebars.compile(source);
+          // Render list
           var tbody = this.$("#report-list");
           tbody.empty();
 
@@ -59,12 +57,6 @@ $(document).ready(function() {
           });
 
           return this;
-        },
-
-        close : function() {
-            this.model.save({
-                text : this.input.val()
-            });
         },
 
         remove : function() {
@@ -80,7 +72,7 @@ $(document).ready(function() {
       },
 
       initialize : function() {
-        this.template = Handlebars.compile($("#report-list-item-template").html());
+        this.template = tpl.get('report-list-item');
       },
 
       render : function() {
