@@ -8,6 +8,8 @@ $(document).ready(function() {
     // Models defenitions
     Report = Backbone.Model.extend({
 
+        urlRoot: '/report',
+
         defaults : function() {
             return {
                 name : 'Default report name',
@@ -37,7 +39,7 @@ $(document).ready(function() {
             this.el = options.el;
 
             this.collection.bind('change', this.render, this);
-            this.collection.bind('destroy', this.remove, this);
+            this.collection.bind('remove', this.render, this);
         },
 
         render : function() {
@@ -92,8 +94,10 @@ $(document).ready(function() {
         alert('edit!');
       },
 
-      deleteItem : function() {
-        alert('delete!');
+      deleteItem : function(e) {
+        e.preventDefault();
+        Reports.remove(this.model);
+        this.model.destroy();
       }
     });
 

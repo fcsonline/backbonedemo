@@ -8,6 +8,8 @@ $(document).ready(function() {
     // Models defenitions
     Campaign = Backbone.Model.extend({
 
+        urlRoot: '/campaign',
+
         defaults : function() {
             return {
                 name : 'Default campaign name',
@@ -37,7 +39,7 @@ $(document).ready(function() {
             this.el = options.el;
 
             this.collection.bind('change', this.render, this);
-            this.collection.bind('destroy', this.remove, this);
+            this.collection.bind('remove', this.render, this);
         },
 
         render : function() {
@@ -59,17 +61,6 @@ $(document).ready(function() {
           });
 
           return this;
-        },
-
-        close : function() {
-            this.model.save({
-                text : this.input.val()
-            });
-            $(this.el).removeClass("editing");
-        },
-
-        remove : function() {
-            $(this.el).remove();
         }
     });
 
@@ -93,12 +84,16 @@ $(document).ready(function() {
         alert('edit!');
       },
 
-      deleteItem : function() {
-        alert('delete!');
+      deleteItem : function(e) {
+        e.preventDefault();
+        Campaigns.remove(this.model);
+        this.model.destroy();
       }
     });
 
     CampaignView = Backbone.View.extend({
+
+        el: $("#campaign-detail"),
 
         events : {
         // "click .edit" : "edit",

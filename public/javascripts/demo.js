@@ -75,16 +75,16 @@ $(document).ready(function() {
             this.subsection = $("#subsection-content");
 
             // Collections instances
-            Reports = new ReportList();
             Campaigns = new CampaignList();
+            Reports = new ReportList();
 
             // Total count
-            Reports.bind('reset', this.renderTotalReports);
-            Campaigns.bind('reset', this.renderTotalCampaigns);
+            Campaigns.bind('all', this.renderTotalCampaigns);
+            Reports.bind('all', this.renderTotalReports);
 
             // Initial fetch
-            Reports.fetch();
             Campaigns.fetch();
+            Reports.fetch();
         },
 
         render : function() {
@@ -97,18 +97,6 @@ $(document).ready(function() {
 
         renderTotalReports : function() {
             $(".nav .report .total-count").html(Reports.length).fadeIn('slow');
-        },
-
-        addOne : function(modeldef) {
-            var view = new PromotionView({
-                model : modeldef
-            });
-            $("#definitions tbody").append(
-                    view.render().el);
-        },
-
-        addAll : function() {
-            Promotions.each(this.addOne);
         }
 
     });
