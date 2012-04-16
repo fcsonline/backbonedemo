@@ -81,7 +81,12 @@ $(document).ready(function() {
       },
 
       editItem : function() {
-        alert('edit!');
+        var cv = new CampaignView({
+          el: $("#campaign-detail"),
+          model : this.model
+        });
+
+        cv.render();
       },
 
       deleteItem : function(e) {
@@ -93,32 +98,18 @@ $(document).ready(function() {
 
     CampaignView = Backbone.View.extend({
 
-        el: $("#campaign-detail"),
-
         events : {
-        // "click .edit" : "edit",
-        // "click .delete" : "clear",
         },
 
         initialize : function(options) {
-            this.template = _.template(tpl.get('campaign-list'));
+            this.template = _.template(tpl.get('campaign-detail'));
 
             this.el = options.el;
-            // this.model.bind('change', this.render, this);
-            // this.model.bind('destroy', this.remove, this);
         },
 
         render : function() {
-            $(this.el).html(this.template({})); // this.model.toJSON()));
-            // this.setText();
+            $(this.el).html(this.template(this.model.toJSON()));
             return this;
-        },
-
-        close : function() {
-            this.model.save({
-                text : this.input.val()
-            });
-            $(this.el).removeClass("editing");
         },
 
         remove : function() {

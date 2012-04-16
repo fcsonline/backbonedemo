@@ -14,13 +14,11 @@ $(document).ready(function() {
             "/campaign"           : "getCampaigns",
             "/campaign/:id"       : "getCampaign",
             "/campaign/:id/edit"  : "editCampaign",
-            "/campaign/:id/delete": "deleteCampaign",
 
             // Reports routes
             "/report"           : "getReports",
             "/report/:id"       : "getReport",
-            "/report/:id/edit"  : "editReport",
-            "/report/:id/delete": "deleteReport"
+            "/report/:id/edit"  : "editReport"
         },
 
         // Campaign route bindings
@@ -41,8 +39,6 @@ $(document).ready(function() {
 
         editCampaign : function(id) {},
 
-        deleteCampaign : function(id) {},
-
         // Reports route bindings
         getReports : function() {
             App.subsectionview = new ReportsSectionView( {
@@ -57,9 +53,7 @@ $(document).ready(function() {
                el : App.subsection
             });
             App.render();
-        },
-
-        deleteReport : function(id) {}
+        }
 
     });
 
