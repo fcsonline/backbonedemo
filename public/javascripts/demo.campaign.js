@@ -31,7 +31,7 @@ $(document).ready(function() {
         events : { },
 
         initialize : function(options) {
-            this.template = _.template(tpl.get('campaign-list'));
+            this.template = tpl.get('campaign-list');
 
             this.el = options.el;
 
@@ -101,7 +101,7 @@ $(document).ready(function() {
         },
 
         initialize : function(options) {
-            this.template = _.template(tpl.get('campaign-detail'));
+            this.template = tpl.get('campaign-detail');
             this.el = options.el;
         },
 

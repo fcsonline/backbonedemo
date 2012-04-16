@@ -32,7 +32,7 @@ $(document).ready(function() {
         events : {},
 
         initialize : function(options) {
-            this.template = _.template(tpl.get('report-list'));
+            this.template = tpl.get('report-list');
 
             this.el = options.el;
 
@@ -112,7 +112,7 @@ $(document).ready(function() {
         },
 
         initialize : function(options) {
-            this.template = _.template(tpl.get('report-detail'));
+            this.template = tpl.get('report-detail');
             this.el = options.el;
         },
 

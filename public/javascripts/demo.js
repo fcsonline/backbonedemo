@@ -81,9 +81,7 @@ $(document).ready(function() {
             Reports.fetch();
         },
 
-        render : function() {
-            this.subsectionview.render();
-        },
+        render : function() { this.subsectionview.render(); },
 
         renderTotalCampaigns : function() {
             $(".nav .campaign .total-count").html(Campaigns.length).fadeIn('slow');
@@ -99,6 +97,7 @@ $(document).ready(function() {
     tpl.loadTemplates('/templates/', [
       'campaign-list', 'campaign-detail', // Campaign templates
       'report-list', 'report-detail'], // Reports templates
+      true, // Precompile
       function() {
           App = new AppView();
           AppRouter = new AppRouter();

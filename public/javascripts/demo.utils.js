@@ -10,7 +10,7 @@ tpl = {
     // Recursively pre-load all the templates for the app.
     // This implementation should be changed in a production environment. All
     // the template files should be concatenated in a single file.
-    loadTemplates : function(path, names, callback) {
+    loadTemplates : function(path, names, compile, callback) {
 
         var that = this;
         var count = 0;
@@ -19,7 +19,7 @@ tpl = {
             var name = names[index];
             console.log('Loading template: ' + name);
             $.get(path + name, function(data) {
-                that.templates[name] = data;
+                that.templates[name] = (compile?_.template(data):data);
                 count++;
                 if (count == names.length) {
                     callback();
