@@ -96,7 +96,8 @@ $(document).ready(function() {
     CampaignView = Backbone.View.extend({
 
         events : {
-          "click .save" : "saveItem"
+          "click .save"   : "saveItem",
+          "click .cancel" : "cancelItem"
         },
 
         initialize : function(options) {
@@ -129,6 +130,11 @@ $(document).ready(function() {
             description : this.$el.find("[name='description']").val()
           });
 
+          this.remove();
+        },
+
+        cancelItem : function(e) {
+          e.preventDefault(); // Don't submit the form
           this.remove();
         }
     });

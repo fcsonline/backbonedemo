@@ -107,7 +107,8 @@ $(document).ready(function() {
     ReportView = Backbone.View.extend({
 
         events : {
-          "click .save" : "saveItem"
+          "click .save" : "saveItem",
+          "click .cancel" : "cancelItem"
         },
 
         initialize : function(options) {
@@ -141,6 +142,11 @@ $(document).ready(function() {
             email       : this.$el.find("[name='email']").val()
           });
 
+          this.remove();
+        },
+
+        cancelItem : function(e) {
+          e.preventDefault(); // Don't submit the form
           this.remove();
         }
     });
