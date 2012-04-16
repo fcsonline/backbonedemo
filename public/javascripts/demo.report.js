@@ -112,12 +112,19 @@ $(document).ready(function() {
 
         initialize : function(options) {
             this.template = _.template(tpl.get('report-detail'));
-
             this.el = options.el;
         },
 
         render : function() {
-            $(this.el).html(this.template(this.model.toJSON()));
+            var data = this.model.toJSON();
+            $(this.el).html(this.template(data));
+
+            // Fill the input's with the model data. Underscore escapes value attribute
+            $(this.el).find('[name]').each(function(i, item){
+              var key = $(item).attr('name');
+              $(item).val(data[key]);
+            });
+
             return this;
         },
 

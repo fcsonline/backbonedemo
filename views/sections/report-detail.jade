@@ -1,26 +1,24 @@
-html
-  body
-    h2 Edit report
-    form.form-horizontal
-      fieldset
-        legend Basic report information
-        .control-group
-          label.control-label Name
-          .controls.docs-input-sizes
-            input.input-medium(name='name', type='text', placeholder='Example New report! Corp.')
-            p.help-block This will be your main report title
-        .control-group
-          label.control-label Description
-          .controls.docs-input-sizes
-            input.input-medium(name='description', type='text', placeholder='The main objective is...')
-            p.help-block Introduce here a description for your new report
-        .control-group
-          label.control-label(for='prependedInput') Email
-          .controls
-            .input-prepend
-              span.add-on @
-              input#prependedInput.span2(name='email', type='text', size='16')
-            p.help-block Introduce your email address to contact you
-      .form-actions
-        button.btn.btn-primary.save(type='submit') Save changes
-        button.btn Cancel
+h2 Edit report
+form.form-horizontal
+  fieldset
+    legend Basic report information
+    .control-group
+      label.control-label Name
+      .controls.docs-input-sizes
+        input.input-medium(name='name', type='text', placeholder='Example New report! Corp.')
+        p.help-block This will be your main report title
+    .control-group
+      label.control-label Description
+      .controls.docs-input-sizes
+        input.input-medium(name='description', type='text', placeholder='The main objective is...')
+        p.help-block Introduce here a description for your new report
+    .control-group
+      label.control-label(for='prependedInput') Email
+      .controls
+        .input-prepend
+          span.add-on @
+          input#prependedInput.span2(name='email', type='text', size='16')
+        p.help-block Introduce your email address to contact you
+  .form-actions
+    button.btn.btn-primary.save(type='submit') Save changes
+    button.btn Cancel
