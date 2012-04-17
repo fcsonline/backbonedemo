@@ -11,14 +11,14 @@
     routes : {
 
       // Campaign routes
-      "/campaign"           : "getCampaigns",
-      "/campaign/:id"       : "getCampaign",
-      "/campaign/:id/edit"  : "editCampaign",
+      "campaign"           : "getCampaigns",
+      "campaign/:id"       : "getCampaign",
+      "campaign/:id/edit"  : "editCampaign",
 
       // Reports routes
-      "/report"           : "getReports",
-      "/report/:id"       : "getReport",
-      "/report/:id/edit"  : "editReport"
+      "report"           : "getReports",
+      "report/:id"       : "getReport",
+      "report/:id/edit"  : "editReport"
     },
 
     // Campaign route bindings
